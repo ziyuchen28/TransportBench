@@ -1,0 +1,42 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": { "major": 3, "minor": 20, "patch": 0 },
+
+  "configurePresets": [
+    {
+      "name": "ninja-debug",
+      "displayName": "Ninja Debug",
+      "generator": "Ninja",
+      "binaryDir": "build/ninja-debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "ninja-release",
+      "displayName": "Ninja Release",
+      "generator": "Ninja",
+      "binaryDir": "build/ninja-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    },
+
+    /* Useful for Windows + Visual Studio users who don't have Ninja */
+    {
+      "name": "msvc-release",
+      "displayName": "MSVC 2022 Release",
+      "generator": "Visual Studio 17 2022",
+      "binaryDir": "build/msvc-release"
+    }
+  ],
+
+  "buildPresets": [
+    { "name": "ninja-debug",   "configurePreset": "ninja-debug",   "jobs": 0 },
+    { "name": "ninja-release", "configurePreset": "ninja-release", "jobs": 0 },
+
+    /* MSVC generator is multi-config; pass configuration here */
+    { "name": "msvc-release",  "configurePreset": "msvc-release",  "configuration": "Release", "jobs": 0 }
+  ]
+}
+
