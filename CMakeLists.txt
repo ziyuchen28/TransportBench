@@ -1,7 +1,16 @@
 cmake_minimum_required(VERSION 3.16)
-project(apibench CXX)
+project(transport_bench LANGUAGES CXX)
+
 set(CMAKE_CXX_STANDARD 17)
-find_package(CURL REQUIRED)
-add_executable(apibench main.cpp)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+find_package(CURL REQUIRED) 
+
+add_executable(apibench
+  src/main.cpp 
+)
+
 target_link_libraries(apibench PRIVATE CURL::libcurl)
 

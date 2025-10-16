@@ -4,12 +4,13 @@
 
   "configurePresets": [
     {
-      "name": "ninja-debug",
-      "displayName": "Ninja Debug",
+      "name": "ninja-dev",
+      "displayName": "Ninja (Dev, Debug, compile_commands at build/)",
       "generator": "Ninja",
-      "binaryDir": "build/ninja-debug",
+      "binaryDir": "build",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug"
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
       }
     },
     {
@@ -18,24 +19,24 @@
       "generator": "Ninja",
       "binaryDir": "build/ninja-release",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release"
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
       }
     },
-
-    /* Useful for Windows + Visual Studio users who don't have Ninja */
     {
       "name": "msvc-release",
       "displayName": "MSVC 2022 Release",
       "generator": "Visual Studio 17 2022",
-      "binaryDir": "build/msvc-release"
+      "binaryDir": "build/msvc-release",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
     }
   ],
 
   "buildPresets": [
-    { "name": "ninja-debug",   "configurePreset": "ninja-debug",   "jobs": 0 },
+    { "name": "ninja-dev",     "configurePreset": "ninja-dev",     "jobs": 0 },
     { "name": "ninja-release", "configurePreset": "ninja-release", "jobs": 0 },
-
-    /* MSVC generator is multi-config; pass configuration here */
     { "name": "msvc-release",  "configurePreset": "msvc-release",  "configuration": "Release", "jobs": 0 }
   ]
 }
